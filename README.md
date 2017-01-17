@@ -1,8 +1,5 @@
-# web-dev-template
+# CS5610 - Web Development Spring 2017
 
-1. git clone https://github.com/jannunzi/web-dev-template.git
-1. cd web-dev-template
-1. npm install
-1. mongod
-1. node server.js
-1. browse to localhost:3000
+Northeastern University | College of Computer and Information Sciences
+
+This directory contains all the experiments and projects which are done as a part of coursework for CS5610.
