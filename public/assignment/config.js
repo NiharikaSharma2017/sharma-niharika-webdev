@@ -5,11 +5,6 @@
 
     function configuration($routeProvider) {
         $routeProvider
-            .when('/',{
-                templateUrl : '/assignment/views/user/login.view.client.html',
-                controller : "LoginController",
-                controllerAs : "model"
-            })
             .when('/login',{
                 templateUrl : '/assignment/views/user/login.view.client.html',
                 controller : "LoginController",
@@ -21,14 +16,10 @@
                 controllerAs : "model"
             })
 
-            .when('/user/:uid', {
+            .when("/profile/:uid",{
                 templateUrl: '/assignment/views/user/profile.view.client.html',
-                controller : "ProfileController",
-                controllerAs : "model",
-                resolve : {
-                    checkLogin : checkLogin
-
-                }
+                controller: 'ProfileController',
+                controllerAs: 'model'
             })
             .when('/user/:uid/website',{
                 templateUrl: '/assignment/views/website/website-list.view.client.html',
@@ -81,6 +72,7 @@
                 controller : "EditWidgetController",
                 controllerAs : "model"
             })
+
             .otherwise({
                 redirectTo: '/'
             });
