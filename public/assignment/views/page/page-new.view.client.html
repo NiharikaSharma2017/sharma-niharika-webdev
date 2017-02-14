@@ -1,46 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Website New</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../css/style.css" rel="stylesheet"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-</head>
-<body>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="row container-fluid">
         <div class="col-sm-4 hidden-xs">
             <div class="navbar-text pull-left">
-                <a href="website-list.html">
+                <a href="page-list.html">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
             <div class="navbar-header">
                 <a class="navbar-brand no-left-margin no-left-padding">
-                    Websites
+                    Pages
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a href="website-new.html">
+                <a href="page-new.html">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </div>
         </div>
         <div class="col-sm-8">
             <div class="navbar-text pull-left hidden-sm hidden-md hidden-lg">
-                <a href="website-list.html">
+                <a href="page-list.html">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a href="website-list.html">
+                <a href="page-list.html">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </div>
             <div class="navbar-header">
                 <a class="navbar-brand no-left-margin no-left-padding">
-                    New Website
+                    New Page
                 </a>
             </div>
         </div>
@@ -53,12 +44,12 @@
             <li class="list-group-item">
                 <div class="row">
                     <div class="col-xs-12">
-                        <a href="../page/page-list.html">
+                        <a href="../widget/widget-list.html">
                         <span>
-                            Address Book App
+                            Blog Post
                         </span>
                         </a>
-                        <a href="website-edit.html" class="pull-right">
+                        <a href="page-edit.html" class="pull-right">
                             <span class="glyphicon glyphicon-cog"></span>
                         </a>
                     </div>
@@ -67,12 +58,12 @@
             <li class="list-group-item">
                 <div class="row">
                     <div class="col-xs-12">
-                        <a href="../page/page-list.html">
+                        <a href="../widget/widget-list.html">
                         <span>
-                            Blogger
+                            Blog
                         </span>
                         </a>
-                        <a href="website-edit.html" class="pull-right">
+                        <a href="page-edit.html" class="pull-right">
                             <span class="glyphicon glyphicon-cog"></span>
                         </a>
                     </div>
@@ -81,12 +72,12 @@
             <li class="list-group-item">
                 <div class="row">
                     <div class="col-xs-12">
-                        <a href="../page/page-list.html">
+                        <a href="../widget/widget-list.html">
                         <span>
-                            Blogging App
+                            Home
                         </span>
                         </a>
-                        <a href="website-edit.html" class="pull-right">
+                        <a href="page-edit.html" class="pull-right">
                             <span class="glyphicon glyphicon-cog"></span>
                         </a>
                     </div>
@@ -95,12 +86,26 @@
             <li class="list-group-item">
                 <div class="row">
                     <div class="col-xs-12">
-                        <a href="../page/page-list.html">
+                        <a href="../widget/widget-list.html">
                         <span>
-                            Script Testing App
+                            About
                         </span>
                         </a>
-                        <a href="website-edit.html" class="pull-right">
+                        <a href="page-edit.html" class="pull-right">
+                            <span class="glyphicon glyphicon-cog"></span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <a href="../widget/widget-list.html">
+                        <span>
+                            Contact Us
+                        </span>
+                        </a>
+                        <a href="page-edit.html" class="pull-right">
                             <span class="glyphicon glyphicon-cog"></span>
                         </a>
                     </div>
@@ -109,17 +114,18 @@
         </ul>
     </div>
     <div class="col-sm-8">
-        <label for="website-name">Name</label>
-        <input placeholder="Name"
+        <label for="page-name">Name</label>
+        <input placeholder="Page Name"
                class="form-control"
-               id="website-name"/>
+               id="page-name"/>
 
-        <label for="website-description">Description</label>
-        <textarea placeholder="Description"
+        <label for="page-description">Title</label>
+        <input placeholder="Page Title"
                   class="form-control"
-                  id="website-description"
-                  rows="3"></textarea>
-        <a href="website-list.html" class="btn btn-danger btn-block">
+                  id="page-description" />
+        <a class="btn btn-primary  btn-block"
+           href="../widget/widget-chooser.html">Choose Widget</a>
+        <a href="page-list.html" class="btn btn-danger btn-block">
             Cancel
         </a>
     </div>
@@ -128,13 +134,10 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a href="../user/profile.html"> 
+            <a href="../views/user/profile.html"> 
                 <span class="glyphicon glyphicon-user"> 
                 </span> 
             </a>
         </div>
     </div>
 </nav>
-
-</body>
-</html>

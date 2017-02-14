@@ -1,14 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Widget Youtube</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../css/style.css" rel="stylesheet"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-</head>
-<body>
-
 <nav class="navbar navbar-default navbar-fixed-top bg-primary">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
@@ -44,27 +34,30 @@
         </div>
         <div class="form-group">
             <label for="url">URL</label>
-            <input type="text" class="form-control" id="url" placeholder="https://www.youtube.com/c8aFcHFu8QM">
+            <input type="text" class="form-control" id="url" placeholder="https://3.bp.blogspot.com/-EGKf--ovXS4/UkgfFLd8D1I/AAAAAAAAZKE/i_XX8xQASgs/s1600/earth-in-space-hd-wallpaper.jpg">
         </div>
         <div class="form-group">
             <label for="width">Width</label>
-            <input type="text" class="form-control" id="width" placeholder="Width">
+            <input type="text" class="form-control" id="width" placeholder="100%">
+        </div>
+        <div class="form-group">
+            <label for="upload">Upload</label>
+            <input type="file" class="form-control" id="upload">
         </div>
     </form>
-    <a class="btn btn-danger btn-space"
+    <a class="btn btn-primary  btn-space"
+       href="widget-list.html">Upload Image</a>
+    <a class="btn btn-danger  btn-space-red"
        href="widget-list.html">Delete</a>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a href="../user/profile.html"> 
+            <a href="../views/user/profile.html"> 
                 <span class="glyphicon glyphicon-user"> 
                 </span> 
             </a>
         </div>
     </div>
 </nav>
-
-</body>
-</html>
