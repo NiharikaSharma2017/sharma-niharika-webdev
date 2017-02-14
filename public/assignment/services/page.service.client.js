@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .service("PageService", PageService);
 
-    function WidgetService() {
+    function PageService() {
 
         var pages = [
             { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
@@ -52,7 +52,7 @@
 
         function createPage(websiteId, page) {
             page.websiteId = websiteId;
-            page._id = (new Date()).getTime();
+            page._id = ((new Date()).getTime() % 1000).toString();
             pages.push(page);
         }
 

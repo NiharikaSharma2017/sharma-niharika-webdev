@@ -9,28 +9,30 @@
         vm.websiteId = $routeParams.wid;
 
         function init() {
+            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
             vm.website = WebsiteService.findWebsiteById(vm.websiteId);
+            console.log(vm.website);
+            vm.name = vm.website.name;
+            vm.description = vm.website.description;
         }
 
         init();
-        vm.editWebsite = editWebsite;
+        vm.updateWebsite = updateWebsite;
         vm.deleteWebsite = deleteWebsite;
 
-        function editWebsite(website) {
+        function updateWebsite(website) {
             var updateWebsite = WebsiteService.updateWebsite(vm.websiteId, website);
             if (updateWebsite != null) {
-                vm.message = "Website successfully Updated."
             }
             else {
                 console.log("Website Update Error");
-                vm.alert = "Website couldn't be Updated."
+                vm.error = "Website couldn't be Updated."
             }
+        }
 
             function deleteWebsite() {
                 WebsiteService.deleteWebsite(vm.websiteId);
-                // $location.url("/user/"+vm.userId+"/website");
             }
-        }
     }
 })();
 

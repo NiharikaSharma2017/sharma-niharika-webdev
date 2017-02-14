@@ -1,11 +1,12 @@
 (function(){
     angular
         .module("WebAppMaker")
-        .controller("ListWebsiteController", ListWebsiteController);
+        .controller("WebsiteListController", WebsiteListController);
 
-    function ListWebsiteController($routeParams, WebsiteService) {
+    function WebsiteListController($routeParams, WebsiteService) {
         var vm = this;
         vm.userId = $routeParams.uid;
+
         function init() {
             vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
         }

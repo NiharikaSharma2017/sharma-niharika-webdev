@@ -60,7 +60,7 @@
 
         function createWidget(pageId, widget) {
             widget.pageId = pageId;
-            widget._id = (new Date()).getTime();
+            widget._id = ((new Date()).getTime() % 1000).toString();
             widgets.push(widget);
         }
 

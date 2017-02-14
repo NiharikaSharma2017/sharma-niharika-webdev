@@ -14,7 +14,7 @@
                 $location.url("/profile/" + loginUser._id);
             }
             else{
-                vm.alert = "Unable to Login.";
+                vm.error = "Unable to Login. Check your Username or Password.";
             }
         }
     }

@@ -7,9 +7,7 @@
             </a>
         </div>
         <div class="navbar-text pull-right">
-            <a href="#"> 
-                <span class="glyphicon glyphicon-ok"> 
-                </span> 
+            <a ng-click="model.updateUser(user)" class="glyphicon glyphicon-ok"> 
             </a>
         </div>
     </div>
@@ -17,30 +15,35 @@
 
 
     <div class="container-fluid">
-
+        <div ng-show="model.message" class="alert alert-success" role="success">
+            {{model.message}}
+        </div>
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
         <form>
             <div class="form-group">
                 <label for="username">Username</label>
-                <input ng-model="model.user.username" type="text" class="form-control" id="username" placeholder="username">
+                <input ng-model="user.username" type="text" class="form-control" id="username" placeholder="{{model.username}}">
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input ng-model="model.user.email" type="email" class="form-control" id="email" placeholder="email">
+                <input ng-model="user.email" type="email" class="form-control" id="email" placeholder="Email Address">
             </div>
             <div class="form-group">
                 <label for="first-name">First Name</label>
-                <input ng-model="model.user.firstName" type="text" class="form-control" id="first-name" placeholder="first name">
+                <input ng-model="user.firstName" type="text" class="form-control" id="first-name" placeholder="{{model.firstName}}">
             </div>
             <div class="form-group">
                 <label for="last-name">Last Name</label>
-                <input ng-model="model.user.lastName" type="text" class="form-control" id="last-name" placeholder="last name">
+                <input ng-model="user.lastName" type="text" class="form-control" id="last-name" placeholder="{{model.lastName}}">
             </div>
         </form>
 
         <a class="btn btn-primary btn-space"
-           href="../website/website-list.html">Websites</a>
+           href="#/user/{{model.id}}/website">Websites</a>
         <a class="btn btn-danger btn-space-red"
-           href="login.html">Logout</a>
+           href="#/login">Logout</a>
     </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

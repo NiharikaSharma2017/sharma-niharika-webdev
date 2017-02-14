@@ -2,17 +2,15 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a href="../views/website/website-list.html">
-                <span class="glyphicon glyphicon-chevron-left"></span>
+            <a href="#/user/{{model.userId}}/website" class="glyphicon glyphicon-chevron-left">
             </a>
         </div>
         <div class="navbar-text pull-right">
-            <a href="page-new.html">
-                <span class="glyphicon glyphicon-plus"></span>
+            <a href="#/user/{{model.userId}}/website/{{model.wid}}/page/new" class="glyphicon glyphicon-plus">
             </a>
         </div>
         <div class="navbar-header">
-            <a href="page-list.html" class="navbar-brand">
+            <a class="navbar-brand">
                 Pages
             </a>
         </div>
@@ -21,95 +19,21 @@
 
 <div class="container-fluid">
     <ul class="list-group">
-        <li class="list-group-item">
+        <li ng-repeat="page in model.pages" class="list-group-item">
             <div class="row">
-                <div class="col-xs-11 col-sm-11">
-                    <a href="../widget/widget-list.html">
-                        <span>
-                            Blog Post
-                        </span>
-                    </a>
-                </div>
-                <div class="col-xs-1">
-                    <a href="page-edit.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
+                <div class="col-xs-12 col-sm-12">
+                    <a href="#/user/{{model.userId}}/website/{{model.wid}}/page/{{page._id}}/widget" class="body-text-custom">{{page.name}}</a>
+                    <a href="#/user/{{model.userId}}/website/{{model.wid}}/page/{{page._id}}" class="glyphicon glyphicon-cog pull-right body-text-custom"></a
                 </div>
             </div>
         </li>
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-xs-11 col-sm-11">
-                    <a href="../widget/widget-list.html">
-                        <span>
-                            Blogs
-                        </span>
-                    </a>
-                </div>
-                <div class="col-xs-1">
-                    <a href="page-edit.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="row" >
-                <div class="col-xs-11 col-sm-11">
-                    <a href="../widget/widget-list.html">
-                        <span>
-                            Home
-                        </span>
-                    </a>
-                </div>
-                <div class="col-xs-1">
-                    <a href="page-edit.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-        <div class="row">
-            <div class="col-xs-11 col-sm-11">
-                <a href="../widget/widget-list.html">
-                        <span>
-                            About
-                        </span>
-                </a>
-            </div>
-            <div class="col-xs-1">
-                <a href="page-edit.html">
-                    <span class="glyphicon glyphicon-cog pull-right"></span>
-                </a>
-            </div>
-        </div>
-    </li>
-    <li class="list-group-item">
-        <div class="row">
-            <div class="col-xs-11 col-sm-11">
-                <a href="../widget/widget-list.html">
-                        <span>
-                            Contact Us
-                        </span>
-                </a>
-            </div>
-            <div class="col-xs-1">
-                <a href="page-edit.html">
-                    <span class="glyphicon glyphicon-cog pull-right"></span>
-                </a>
-            </div>
-        </div>
-    </li>
     </ul>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a href="../views/user/profile.html"> 
-                <span class="glyphicon glyphicon-user" > 
-                </span> 
+            <a href="#/profile/{{model.userId}}" class="glyphicon glyphicon-user"> 
             </a>
         </div>
     </div>

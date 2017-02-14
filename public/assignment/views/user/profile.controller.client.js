@@ -13,6 +13,9 @@
         if(user != null) {
             vm.user = user;
             vm.id = user._id;
+            vm.username = user.username;
+            vm.firstName = user.firstName;
+            vm.lastName = user.lastName;
         }
         else{
             vm.error = "User not found";
@@ -21,10 +24,10 @@
         function updateUser(newUser){
             var updatedUser = UserService.updateUser(userId, newUser);
             if(updatedUser != null){
-                vm.message = "User successfully updated";
+                vm.message = "User Profile successfully updated.";
             }
             else{
-                vm.error = "Unable to update User";
+                vm.error = "Unable to update User Profile.";
             }
         }
 

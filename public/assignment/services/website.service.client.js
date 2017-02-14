@@ -52,7 +52,6 @@
             for(var w in websites) {
                 if(websites[w]._id === websiteId) {
                     websites[w].name = website.name;
-                    websites[w].developerId = website.developerId;
                     websites[w].description = website.description;
                     return website;
                 }
@@ -63,8 +62,9 @@
 
         function createWebsite(userId, website) {
             website.developerId = userId;
-            website._id = (new Date()).getTime();
+            website._id = ((new Date()).getTime() % 1000).toString();
             websites.push(website);
+            return angular.copy(website);
         }
 
     }

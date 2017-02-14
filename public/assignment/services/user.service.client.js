@@ -1,9 +1,9 @@
 (function(){
     angular
         .module("WebAppMaker")
-        .factory('UserService', userService);
+        .factory('UserService', UserService);
 
-    function userService() {
+    function UserService() {
         var users = [
             {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
             {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
@@ -23,7 +23,7 @@
         return api;
 
         function createUser(user){
-            var id = (new Date()).getTime();
+            var id = ((new Date()).getTime() % 1000).toString();
             user._id = id;
             users.push(user);
             return angular.copy(user);
@@ -33,6 +33,7 @@
             for(var u in users) {
                 var user = users[u];
                 if( user._id === userId ) {
+                    users[u].username = newUser.username;
                     users[u].firstName = newUser.firstName;
                     users[u].lastName = newUser.lastName;
                     return user;

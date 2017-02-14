@@ -1,9 +1,9 @@
 (function(){
     angular
         .module("WebAppMaker")
-        .controller("RegisterController",RegisterController)
+        .controller("RegisterController", RegisterController)
 
-    function RegisterController($location,UserService){
+    function RegisterController($location, UserService){
         var vm = this;
         vm.register = register;
 

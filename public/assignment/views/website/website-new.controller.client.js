@@ -14,7 +14,6 @@
         vm.createWebsite = createWebsite;
         function createWebsite (website) {
             WebsiteService.createWebsite(vm.userId, website);
-            $location.url("/user/"+vm.userId+"/website");
         };
     }
 })();
