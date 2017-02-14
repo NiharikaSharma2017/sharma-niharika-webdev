@@ -110,7 +110,10 @@
                   class="form-control"
                   id="website-description"
                   rows="3"></textarea>
-        <a href="website-list.html" class="btn btn-danger btn-block">
+        <a ng-click="model.updateWebsite(website)" class="btn btn-primary btn-block">
+            Update
+        </a>
+        <a ng-click="model.deleteWebsite()" class="btn btn-danger btn-block">
             Delete
         </a>
     </div>

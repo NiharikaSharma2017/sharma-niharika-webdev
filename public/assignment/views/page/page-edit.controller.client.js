@@ -1,17 +1,13 @@
 (function(){
     angular
         .module("WebAppMaker")
-        .controller("NewWebsiteController",NewWebsiteController)
-        .controller("EditWebsiteController",EditWebsiteController)
+        .controller("EditPageController",EditPageController)
 
-    function NewWebsiteController(){
-        var vm = this;
-    }
-
-    function EditWebsiteController($routeParams, WebsiteService){
+    function EditPageController($routeParams, PageService){
         var vm = this;
         vm.userId = $routeParams.uid;
         vm.websiteId = $routeParams.wid;
+        vm.pageId = $routeParams.pid;
 
         function init() {
             vm.websites = WebsiteService.findAllWebsitesForUser(vm.userId);

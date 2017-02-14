@@ -26,6 +26,7 @@
             var id = (new Date()).getTime();
             user._id = id;
             users.push(user);
+            return angular.copy(user);
         }
 
         function updateUser(userId, newUser) {

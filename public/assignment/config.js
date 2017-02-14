@@ -5,6 +5,11 @@
 
     function configuration($routeProvider) {
         $routeProvider
+            .when('/',{
+                templateUrl : '/assignment/views/user/login.view.client.html',
+                controller : "LoginController",
+                controllerAs : "model"
+            })
             .when('/login',{
                 templateUrl : '/assignment/views/user/login.view.client.html',
                 controller : "LoginController",
@@ -71,6 +76,9 @@
                 templateUrl: '/assignment/views/widget/widget-edit.view.client.html',
                 controller : "EditWidgetController",
                 controllerAs : "model"
+            })
+            .otherwise({
+                redirectTo: '/'
             });
     }
 })();
