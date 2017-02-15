@@ -11,7 +11,6 @@
         function init() {
             vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
             vm.website = WebsiteService.findWebsiteById(vm.websiteId);
-            console.log(vm.website);
             vm.name = vm.website.name;
             vm.description = vm.website.description;
         }
@@ -23,6 +22,7 @@
         function updateWebsite(website) {
             var updateWebsite = WebsiteService.updateWebsite(vm.websiteId, website);
             if (updateWebsite != null) {
+                console.log(website);
             }
             else {
                 console.log("Website Update Error");

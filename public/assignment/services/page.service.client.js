@@ -11,21 +11,21 @@
             { "_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem" }
         ];
 
-        this.findPageByWebsiteId = findPageByWebsiteId;
+        this.findPagesByWebsiteId = findPagesByWebsiteId;
         this.findPageById = findPageById;
         this.createPage = createPage;
         this.updatePage = updatePage;
         this.deletePage = deletePage;
 
 
-        function findPageByWebsiteId(websiteId) {
-            var websites = [];
+        function findPagesByWebsiteId(websiteId) {
+            var websitePages = [];
             for(var p in pages) {
                 if(pages[p].websiteId === websiteId) {
-                    websites.push(pages[p]);
+                    websitePages.push(pages[p]);
                 }
             }
-            return websites;
+            return websitePages;
         }
 
 
@@ -41,6 +41,7 @@
             for(var p in pages) {
                 if(pages[p]._id === pageId) {
                     pages[p].name = page.name;
+                    pages[p].title = page.title;
                     pages[p].websiteId = page.websiteId;
                     pages[p].description = page.description;
                     return page;

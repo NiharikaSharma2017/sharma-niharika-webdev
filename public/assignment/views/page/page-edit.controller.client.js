@@ -1,7 +1,7 @@
 (function(){
     angular
         .module("WebAppMaker")
-        .controller("EditPageController",EditPageController)
+        .controller("EditPageController", EditPageController)
 
     function EditPageController($routeParams, PageService){
         var vm = this;
@@ -10,10 +10,30 @@
         vm.pageId = $routeParams.pid;
 
         function init() {
-            vm.websites = WebsiteService.findAllWebsitesForUser(vm.userId);
-            vm.website = WebsiteService.findWebsiteById(vm.websiteId);
+            vm.pages = PageService.findPagesByWebsiteId(vm.wid);
+            vm.page = PageService.findPageById(vm.pageId);
+            vm.name = vm.page.name;
+            vm.title = vm.page.title;
         }
 
         init();
+
+        vm.updatePage = updatePage;
+        vm.deletePage = deletePage;
+
+        function updatePage(page) {
+            var updatePage = PageService.updatePage(vm.pageId,page);
+            if (updatePage != null) {
+                console.log(page);
+            }
+            else {
+                console.log("Page Update Error");
+                vm.error = "Page couldn't be Updated."
+            }
+        }
+
+        function deletePage() {
+            PageService.deletePage(vm.pageId);
+        }
     }
 })();
