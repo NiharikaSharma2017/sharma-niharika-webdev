@@ -43,15 +43,25 @@
             }
         }
 
-        function updateWidget(widgetId, widget) {
+        function updateWidget(widgetId, widget, widgetType) {
             for(var w in widgets) {
                 if(widgets[w]._id === widgetId) {
-                    widgets[w].widgetType = widget.widgetType;
-                    widgets[w].pageId = widget.pageId;
-                    widgets[w].size = widget.size;
-                    widgets[w].width = widget.width;
-                    widgets[w].text = widget.text;
-                    return widget;
+                    if(widgetType =="Header") {
+                        widgets[w].name = widget.name;
+                        widgets[w].size = widget.size;
+                        widgets[w].text = widget.text;
+                    }
+                    else if(widgetType =="YOUTUBE") {
+                        widgets[w].name = widget.name;
+                        widgets[w].text = widget.text;
+                        widgets[w].url = widget.url;
+                        widgets[w].width = widget.width;
+                    }
+                    else{
+                            widgets[w].name = widget.name;
+                            widgets[w].text = widget.text;
+                            widgets[w].url = widget.url;
+                    }
                 }
             }
 

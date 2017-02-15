@@ -1,63 +1,20 @@
-<!DOCTYPE html>
-<nav class="navbar navbar-default navbar-fixed-top bg-primary">
-    <div class="container-fluid">
-        <div class="navbar-text pull-left">
-            <a href="widget-list.html">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-            </a>
-        </div>
-        <div class="navbar-text pull-right">
-            <a href="widget-list.html"> 
-                <span class="glyphicon glyphicon-ok"> 
-                </span> 
-            </a>
-        </div>
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#"> 
-                Widget Edit
-            </a>
-        </div>
-    </div>
-</nav>
-
-
-<div class="container-fluid">
-
-    <form>
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Name">
-        </div>
-        <div class="form-group">
-            <label for="text">Text</label>
-            <input type="email" class="form-control" id="text" placeholder="Text">
-        </div>
-        <div class="form-group">
-            <label for="url">URL</label>
-            <input type="text" class="form-control" id="url" placeholder="https://3.bp.blogspot.com/-EGKf--ovXS4/UkgfFLd8D1I/AAAAAAAAZKE/i_XX8xQASgs/s1600/earth-in-space-hd-wallpaper.jpg">
-        </div>
-        <div class="form-group">
-            <label for="width">Width</label>
-            <input type="text" class="form-control" id="width" placeholder="100%">
-        </div>
-        <div class="form-group">
-            <label for="upload">Upload</label>
-            <input type="file" class="form-control" id="upload">
-        </div>
-    </form>
-    <a class="btn btn-primary  btn-space"
-       href="widget-list.html">Upload Image</a>
-    <a class="btn btn-danger  btn-space-red"
-       href="widget-list.html">Delete</a>
+<div class="form-group">
+    <label for="name">Name</label>
+    <input ng-model = "widget.name" type="text" class="form-control" id="name" placeholder="{{model.name}}">
 </div>
-
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <div class="navbar-text pull-right">
-            <a href="../views/user/profile.html"> 
-                <span class="glyphicon glyphicon-user"> 
-                </span> 
-            </a>
-        </div>
-    </div>
-</nav>
+<div class="form-group">
+    <label for="text">Text</label>
+    <input ng-model = "widget.text" type="email" class="form-control" id="text" placeholder="{{model.text}}">
+</div>
+<div class="form-group">
+    <label for="url">URL</label>
+    <input ng-model = "widget.url" type="text" class="form-control" id="url" placeholder="{{model.url}}">
+</div>
+<div class="form-group">
+    <label for="width">Width</label>
+    <input ng-model = "widget.width" type="text" class="form-control" id="width" placeholder="{{model.width}}">
+</div>
+<div class="form-group">
+    <label for="upload">Upload</label>
+    <input type="file" class="form-control" id="upload">
+</div>
