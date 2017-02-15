@@ -13,11 +13,10 @@
             vm.pages = PageService.findPagesByWebsiteId(vm.wid);
             vm.page = PageService.findPageById(vm.pageId);
             vm.name = vm.page.name;
-            vm.title = vm.page.title;
+            vm.description = vm.page.description;
         }
 
         init();
-
         vm.updatePage = updatePage;
         vm.deletePage = deletePage;
 

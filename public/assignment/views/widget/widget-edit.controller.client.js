@@ -14,5 +14,10 @@
             vm.widget = WidgetService.findWidgetById(vm.widgetId);
         }
         init();
+        vm.getEditorTemplateUrl = getEditorTemplateUrl;
+
+        function getEditorTemplateUrl(type) {
+            return 'views/widget/widget-'+type+'-editor.view.client.html';
+        }
     }
 })();

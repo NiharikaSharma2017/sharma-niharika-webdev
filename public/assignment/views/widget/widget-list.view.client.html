@@ -2,12 +2,12 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a href="../views/page/page-list.html">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
         <div class="navbar-text pull-right">
-            <a href="widget-chooser.html">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
         </div>
@@ -19,90 +19,44 @@
     </div>
 </nav>
 
-<div class="container-fluid">
-    <ul class="list-group">
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12">
-                    <div class="jga-toolbar">
-                        <a href="widget-heading.html">
-                            <span class="glyphicon glyphicon-align-justify  pull-right"></span>
-                        </a>
-                        <a href="widget-heading.html">
-                            <span class="glyphicon glyphicon-cog"></span>
-                        </a>
+    <div ng-repeat="widget in model.widgets">
+        <div class="container-fluid">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12">
+                            <div class="jga-toolbar">
+                                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
+                                    <span class="glyphicon glyphicon-align-justify  pull-right"></span>
+                                </a>
+                                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
+                                    <span class="glyphicon glyphicon-cog"></span>
+                                </a>
+                            </div>
+                            <div ng-switch="widget.widgetType">
+                                <div ng-switch-when="HEADER">
+                                    <h1>{{widget.text}}</h1>
+                                </div>
+                                <div ng-switch-when="IMAGE">
+                                    <img ng-src="{{widget.url}}" />
+                                </div>
+                                <div ng-switch-when="YOUTUBE">
+                                    <iframe width="100%" frameborder="0" ng-src="{{model.getYouTubeEmbedUrl(widget.url)}}"/>
+                                </div>
+                                <div ng-switch-when="HTML" ng-bind-html="model.getTrustedHtml(widget.text)">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h1>Gizmodo</h1>
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12">
-                    <div class="jga-toolbar">
-                        <a href="widget-heading.html">
-                            <span class="glyphicon glyphicon-align-justify  pull-right"></span>
-                        </a>
-                        <a href="widget-heading.html">
-                            <span class="glyphicon glyphicon-cog"></span>
-                        </a>
-                    </div>
-                    <h3>US Senate Reaches Compromise on Emergency Zika Funding</h3>
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12">
-                    <div class="jga-toolbar">
-                        <a href="widget-image.html">
-                            <span class="glyphicon glyphicon-align-justify  pull-right"></span>
-                        </a>
-                        <a href="widget-image.html">
-                            <span class="glyphicon glyphicon-cog"></span>
-                        </a>
-                    </div>
-                    <img src="https://3.bp.blogspot.com/-EGKf--ovXS4/UkgfFLd8D1I/AAAAAAAAZKE/i_XX8xQASgs/s1600/earth-in-space-hd-wallpaper.jpg">
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12">
-                    <div class="jga-toolbar">
-                        <a href="widget-youtube.html">
-                            <span class="glyphicon glyphicon-align-justify  pull-right"></span>
-                        </a>
-                        <a href="widget-youtube.html">
-                            <span class="glyphicon glyphicon-cog"></span>
-                        </a>
-                    </div>
-                    <iframe width="100%" src="https://www.youtube.com/embed/c8aFcHFu8QM" frameborder="0"></iframe>
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12">
-                    <div class="jga-toolbar">
-                        <a href="widget-heading.html">
-                            <span class="glyphicon glyphicon-align-justify  pull-right"></span>
-                        </a>
-                        <a href="widget-heading.html">
-                            <span class="glyphicon glyphicon-cog"></span>
-                        </a>
-                    </div>
-                    <h5>For centuries, early flight pioneers tried to achieve this very feat by attaching artificial wings to their arms and backs. But just as the myth of Icarus ended with the Greek hero falling to his death, history books are filled with tales of enthusiastic pioneers leaping from high places, wings spread and plummeting back to the Earth.</h5>
-                </div>
-            </div>
-        </li>
-    </ul>
-</div>
+                </li>
+            </ul>
+        </div>
+    </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a href="../views/user/profile.html"> 
+            <a href="#/profile/{{model.userId}}"> 
                 <span class="glyphicon glyphicon-user"> 
                 </span> 
             </a>
