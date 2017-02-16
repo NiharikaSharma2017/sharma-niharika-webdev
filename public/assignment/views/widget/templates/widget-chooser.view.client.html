@@ -1,0 +1,48 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand">
+                Choose Widget
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!--Dummy list of websites-->
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+            <table class="table table-borderless">
+                <tbody>
+                <tr>
+                    <td>
+                        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new/header" class="body-text-custom">Header</a></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new/image" class="body-text-custom">Image</a></td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new/youtube" class="body-text-custom">YouTube</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-text pull-right">
+            <a href="#/profile/{{model.userId}}" class="glyphicon glyphicon-user"> 
+            </a>
+        </div>
+    </div>
+</nav>

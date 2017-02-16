@@ -14,26 +14,13 @@
 
         function init() {
             vm.widget = WidgetService.findWidgetById(vm.widgetId);
+            console.log(vm.widget);
             vm.widgetType = vm.widget.widgetType;
-            switch(vm.widgetType){
-                case "Header":
-                    vm.name = vm.widget.name;
-                    vm.size = vm.widget.size;
-                    vm.text = vm.widget.text;
-                    break;
-                case "YOUTUBE":
-                    vm.name = vm.widget.name;
-                    vm.text = vm.widget.text;
-                    vm.url = vm.widget.url;
-                    vm.width = vm.widget.width;
-                    break;
-                case "IMAGE":
-                    vm.name = vm.widget.name;
-                    vm.text = vm.widget.text;
-                    vm.url = vm.widget.url;
-                    break;
-            }
-            vm.page = "views/widget/widget-" + vm.widgetType + ".editor.view.client.html";
+            vm.size = vm.widget.size;
+            vm.text = vm.widget.text;
+            vm.url = vm.widget.url;
+            vm.width = vm.widget.width;
+            vm.page = "views/widget/templates/widget-" + vm.widgetType + ".view.client.html";
         }
 
         init();
@@ -51,6 +38,7 @@
 
         function deleteWidget() {
             WidgetService.deleteWidget(vm.widgetId);
+
         }
     }
 })();

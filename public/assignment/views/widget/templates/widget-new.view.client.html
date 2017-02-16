@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
@@ -7,38 +6,30 @@
             </a>
         </div>
         <div class="navbar-text pull-right">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" ng-click="model.updateWidget(widget, model.widgetType)">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" ng-click="model.createWidget(model.widget)">
                 <span class="glyphicon glyphicon-ok"></span>
             </a>
         </div>
         <div class="navbar-header">
             <a class="navbar-brand">
-                Edit Widget
+                New Widget
             </a>
         </div>
     </div>
 </nav>
+
 
 <div class="container-fluid">
     <form>
         <div ng-include="model.page">
         </div>
     </form>
-
-    <div class="form-group">
-        <br/>
-        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" ng-click="model.deleteWidget()" class="btn btn-danger btn-block">
-            Delete
-        </a>
-    </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a href="#/profile/{{model.userId}}"> 
-                <span class="glyphicon glyphicon-user"> 
-                </span> 
+            <a href="#/profile/{{model.userId}}" class="glyphicon glyphicon-user"> 
             </a>
         </div>
     </div>

@@ -22,7 +22,7 @@
         function updateWebsite(website) {
             var updateWebsite = WebsiteService.updateWebsite(vm.websiteId, website);
             if (updateWebsite != null) {
-                console.log(page);
+                console.log(website);
             }
             else {
                 console.log("Website Update Error");

@@ -12,7 +12,6 @@
         ];
 
         var api = {
-            "users": users,
             "createUser": createUser,
             "updateUser": updateUser,
             "deleteUser": deleteUser,

@@ -10,13 +10,13 @@
 
         function init() {
             vm.pages = PageService.findPagesByWebsiteId(vm.wid);
-            console.log(vm.pages);
         }
         init();
         vm.createPage = createPage;
 
         function createPage (page) {
             PageService.createPage(vm.wid,page);
+            console.log(page);
         };
     }
 })();

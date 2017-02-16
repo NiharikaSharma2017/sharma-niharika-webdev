@@ -46,21 +46,23 @@
         function updateWidget(widgetId, widget, widgetType) {
             for(var w in widgets) {
                 if(widgets[w]._id === widgetId) {
-                    if(widgetType =="Header") {
-                        widgets[w].name = widget.name;
-                        widgets[w].size = widget.size;
-                        widgets[w].text = widget.text;
-                    }
-                    else if(widgetType =="YOUTUBE") {
-                        widgets[w].name = widget.name;
-                        widgets[w].text = widget.text;
-                        widgets[w].url = widget.url;
-                        widgets[w].width = widget.width;
-                    }
-                    else{
-                            widgets[w].name = widget.name;
+                    switch(widgetType){
+                        case "HEADER":
+                            widgets[w].size = widget.size;
+                            widgets[w].text = widget.text;
+                            return widget;
+                            break;
+                        case "YOUTUBE":
                             widgets[w].text = widget.text;
                             widgets[w].url = widget.url;
+                            widgets[w].width = widget.width;
+                            return widget;
+                            break;
+                        case "IMAGE":
+                            widgets[w].text = widget.text;
+                            widgets[w].url = widget.url;
+                            return widget;
+                            break;
                     }
                 }
             }
@@ -68,7 +70,8 @@
             return null;
         }
 
-        function createWidget(pageId, widget) {
+        function createWidget(pageId, widget, widgetType) {
+            widget.widgetType = widgetType.toUpperCase();
             widget.pageId = pageId;
             widget._id = ((new Date()).getTime() % 1000).toString();
             widgets.push(widget);

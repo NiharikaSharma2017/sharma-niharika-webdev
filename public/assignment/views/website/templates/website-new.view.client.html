@@ -22,7 +22,7 @@
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a href="#/user/{{model.userId}}/website" ng-click="model.createWebsite(website)" class="glyphicon glyphicon-ok">
+                <a href="#/user/{{model.userId}}/website" ng-click="model.createWebsite(model.website)" class="glyphicon glyphicon-ok">
                 </a>
             </div>
             <div class="navbar-header">
@@ -49,14 +49,14 @@
     </div>
     <div class="col-sm-8">
         <label for="website-name">Website Name</label>
-        <input ng-model="website.name"
-               placeholder="Website Name"
+        <input ng-model="model.website.name"
+               placeholder="name"
                class="form-control"
                id="website-name"/>
 
         <label for="website-description">Website Description</label>
-        <textarea ng-model="website.description"
-                  placeholder="Website Description"
+        <textarea ng-model="model.website.description"
+                  placeholder="description"
                   class="form-control"
                   id="website-description"
                   rows="3"></textarea>

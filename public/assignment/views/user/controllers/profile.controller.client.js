@@ -3,17 +3,17 @@
         .module("WebAppMaker")
         .controller("ProfileController", ProfileController)
 
-    function ProfileController($routeParams, UserService) {
+    function ProfileController($routeParams, UserService, $location) {
         var vm = this;
         var userId = $routeParams['uid'];
         vm.updateUser = updateUser;
-        vm.deleteUser = deleteUser;
+        vm.logout = logout;
         var user = UserService.findUserById(userId);
-        console.log(user);
         if(user != null) {
             vm.user = user;
             vm.id = user._id;
             vm.username = user.username;
+            vm.email = user.email;
             vm.firstName = user.firstName;
             vm.lastName = user.lastName;
         }
@@ -21,9 +21,10 @@
             vm.error = "User not found";
         }
 
-        function updateUser(newUser){
-            var updatedUser = UserService.updateUser(userId, newUser);
+        function updateUser(user){
+            var updatedUser = UserService.updateUser(userId, user);
             if(updatedUser != null){
+                console.log(user);
                 vm.message = "User Profile successfully updated.";
             }
             else{
@@ -31,10 +32,9 @@
             }
         }
 
-        function deleteUser() {
-            console.log(vm.id)
-            UserService.deleteUser(vm.id);
-            $location.url("/user/"+vm.id);
+        function logout() {
+            $location.url("/");
         }
+
     }
 })();

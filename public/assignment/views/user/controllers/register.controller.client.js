@@ -9,6 +9,7 @@
 
         function register(user){
             UserService.createUser(user);
+            console.log(user);
             $location.url("/profile/" + user._id);
         }
     }
