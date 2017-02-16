@@ -15,7 +15,7 @@
         function init() {
             vm.widget = WidgetService.findWidgetById(vm.widgetId);
             console.log(vm.widget);
-            vm.widgetType = vm.widget.widgetType;
+            vm.widgetType = vm.widget.widgetType.toLowerCase();
             vm.size = vm.widget.size;
             vm.text = vm.widget.text;
             vm.url = vm.widget.url;

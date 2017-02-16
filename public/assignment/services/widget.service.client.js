@@ -47,18 +47,18 @@
             for(var w in widgets) {
                 if(widgets[w]._id === widgetId) {
                     switch(widgetType){
-                        case "HEADER":
+                        case "header":
                             widgets[w].size = widget.size;
                             widgets[w].text = widget.text;
                             return widget;
                             break;
-                        case "YOUTUBE":
+                        case "youtube":
                             widgets[w].text = widget.text;
                             widgets[w].url = widget.url;
                             widgets[w].width = widget.width;
                             return widget;
                             break;
-                        case "IMAGE":
+                        case "image":
                             widgets[w].text = widget.text;
                             widgets[w].url = widget.url;
                             return widget;
