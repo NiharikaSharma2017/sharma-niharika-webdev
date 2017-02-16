@@ -18,6 +18,15 @@
     </div>
 </nav>
 
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-text pull-right">
+            <a href="#/profile/{{model.userId}}" class="glyphicon glyphicon-user"> 
+            </a>
+        </div>
+    </div>
+</nav>
+
 <div ng-repeat="widget in model.widgets">
     <div class="container-fluid">
         <ul class="list-group">
@@ -51,12 +60,3 @@
         </ul>
     </div>
 </div>
-
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <div class="navbar-text pull-right">
-            <a href="#/profile/{{model.userId}}" class="glyphicon glyphicon-user"> 
-            </a>
-        </div>
-    </div>
-</nav>
