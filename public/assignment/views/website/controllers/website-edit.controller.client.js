@@ -9,10 +9,17 @@
         vm.websiteId = $routeParams.wid;
 
         function init() {
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
-            vm.website = WebsiteService.findWebsiteById(vm.websiteId);
-            vm.name = vm.website.name;
-            vm.description = vm.website.description;
+
+            var websiteRetrievePromise = WebsiteService.findWebsiteById(vm.websiteId);
+            websiteRetrievePromise
+                .success(function(website){
+                    vm.website = website;
+                    vm.name = vm.website.name;
+                    vm.description = vm.website.description;
+                })
+                .error(function(){
+                    console.log("Failed to retrieve Website");
+                });
         }
 
         init();
@@ -20,18 +27,26 @@
         vm.deleteWebsite = deleteWebsite;
 
         function updateWebsite(website) {
-            var updateWebsite = WebsiteService.updateWebsite(vm.websiteId, website);
-            if (updateWebsite != null) {
-                console.log(website);
-            }
-            else {
-                console.log("Website Update Error");
-                vm.error = "Website couldn't be Updated."
-            }
+            var websiteUpdatePromise = WebsiteService.updateWebsite(vm.websiteId, website);
+            websiteUpdatePromise
+                .success(function(){
+                })
+                .error(function(){
+                    vm.error = "Unable to update Website";
+                });
         }
 
             function deleteWebsite() {
-                WebsiteService.deleteWebsite(vm.websiteId);
+                var answer = confirm("Are you sure?");
+                if(answer){
+                    var websiteDeletePromise = WebsiteService.deleteWebsite(vm.websiteId);
+                    websiteDeletePromise
+                        .success(function(){
+                        })
+                        .error(function(){
+                            vm.error = "Unable to delete Website";
+                        });
+                }
             }
     }
 })();

@@ -6,18 +6,21 @@
     function NewPageController($routeParams, $location, PageService) {
         var vm = this;
         vm.userId = $routeParams.uid;
-        vm.wid = $routeParams.wid;
+        vm.websiteId = $routeParams.wid;
 
-        function init() {
-            vm.pages = PageService.findPagesByWebsiteId(vm.wid);
-        }
-        init();
         vm.createPage = createPage;
 
         function createPage (page) {
-            PageService.createPage(vm.wid,page);
-            console.log(page);
-        };
+            var createPromise = PageService.createPage(vm.websiteId,page);
+            createPromise
+                .success(function(page){
+                    console.log(page);
+                })
+                .error(function(){
+                    console.log("Internal Server Error - Unable to add Page");
+                });
+
+        }
     }
 })();
 

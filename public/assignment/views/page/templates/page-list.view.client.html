@@ -5,7 +5,7 @@
             </a>
         </div>
         <div class="navbar-text pull-right">
-            <a href="#/user/{{model.userId}}/website/{{model.wid}}/page/new" class="glyphicon glyphicon-plus">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new" class="glyphicon glyphicon-plus">
             </a>
         </div>
         <div class="navbar-header">
@@ -21,8 +21,8 @@
         <li ng-repeat="page in model.pages" class="list-group-item">
             <div class="row">
                 <div class="col-xs-12 col-sm-12">
-                    <a href="#/user/{{model.userId}}/website/{{model.wid}}/page/{{page._id}}/widget" class="body-text-custom">{{page.name}}</a>
-                    <a href="#/user/{{model.userId}}/website/{{model.wid}}/page/{{page._id}}" class="glyphicon glyphicon-cog pull-right body-text-custom"></a
+                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget" class="body-text-custom">{{page.name}}</a>
+                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}" class="glyphicon glyphicon-cog pull-right body-text-custom"></a>
                 </div>
             </div>
         </li>

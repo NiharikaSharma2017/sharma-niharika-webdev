@@ -6,7 +6,7 @@
             </a>
         </div>
         <div class="navbar-text pull-right">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" ng-click="model.updateWidget(model.widget, model.widgetType)">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" ng-click="model.updateWidget(model.widget)">
                 <span class="glyphicon glyphicon-ok"></span>
             </a>
         </div>
@@ -23,9 +23,7 @@
         <div ng-include="model.page">
         </div>
     </form>
-
     <div class="form-group">
-        <br/>
         <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" ng-click="model.deleteWidget()" class="btn btn-danger btn-block">
             Delete
         </a>

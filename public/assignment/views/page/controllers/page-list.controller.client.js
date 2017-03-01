@@ -6,10 +6,17 @@
     function PageListController($routeParams, PageService) {
         var vm = this;
         vm.userId = $routeParams.uid;
-        vm.wid = $routeParams.wid;
+        vm.websiteId = $routeParams.wid;
 
         function init() {
-            vm.pages = PageService.findPagesByWebsiteId(vm.wid);
+            var pageListPromise = PageService.findPagesByWebsiteId(vm.websiteId);
+            pageListPromise
+                .success(function(pages){
+                    vm.pages = pages;
+                })
+                .error(function(){
+                    console.log("Failed to retrieve Page List");
+                });
         }
         init();
     }

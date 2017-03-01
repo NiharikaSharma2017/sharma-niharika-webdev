@@ -3,12 +3,7 @@
         .module("WebAppMaker")
         .factory("PageService", PageService);
 
-    function PageService() {
-        var pages = [
-            { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
-            { "_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem" },
-            { "_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem" }
-        ];
+    function PageService($http) {
 
         var api = {
             "findPagesByWebsiteId": findPagesByWebsiteId,
@@ -19,50 +14,32 @@
         };
         return api;
 
-        function findPagesByWebsiteId(websiteId) {
-            var websitePages = [];
-            for(var p in pages) {
-                if(pages[p].websiteId === websiteId) {
-                    websitePages.push(pages[p]);
-                }
-            }
-            return websitePages;
+        function createPage(websiteId, page){
+            var url = "/api/website/" + websiteId + "/page";
+            return $http.post(url,page);
+        }
+
+        function findPagesByWebsiteId(websiteId){
+            var url = "/api/website/" + websiteId + "/page";
+            return $http.get(url);
         }
 
 
-        function deletePage(pageId) {
-            for(var p in pages) {
-                if(pages[p]._id === pageId) {
-                    pages.splice(p, 1);
-                }
-            }
+        function findPageById(pageId){
+            var url = "/api/page/" + pageId;
+            return $http.get(url);
         }
 
-        function updatePage(pageId, page) {
-            for(var p in pages) {
-                if(pages[p]._id === pageId) {
-                    pages[p].name = page.name;
-                    pages[p].description = page.description;
-                    return page;
-                }
-            }
-
-            return null;
+        function updatePage(pageId, page){
+            var url = "/api/page/" + pageId;
+            return $http.put(url, page);
         }
 
-        function createPage(websiteId, page) {
-            page.websiteId = websiteId;
-            page._id = ((new Date()).getTime() % 1000).toString();
-            pages.push(page);
-        }
 
-        function findPageById(pageId) {
-            for(var p in pages) {
-                if(pages[p]._id === pageId) {
-                    return angular.copy(pages[p]);
-                }
-            }
-            return null;
+
+        function deletePage(pageId){
+            var url = "/api/page/" + pageId;
+            return $http.delete(url);
         }
     }
 })();

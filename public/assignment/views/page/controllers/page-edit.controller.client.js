@@ -10,29 +10,44 @@
         vm.pageId = $routeParams.pid;
 
         function init() {
-            vm.pages = PageService.findPagesByWebsiteId(vm.websiteId);
-            vm.page = PageService.findPageById(vm.pageId);
-            vm.name = vm.page.name;
-            vm.description = vm.page.description;
+            var pageRetrievePromise = PageService.findPageById(vm.pageId);
+            pageRetrievePromise
+                .success(function(page){
+                    vm.page = page;
+                    vm.name = vm.page.name;
+                    vm.description = vm.page.description;
+                })
+                .error(function(){
+                    console.log("Failed to retrieve Page");
+                });
         }
 
         init();
+
         vm.updatePage = updatePage;
         vm.deletePage = deletePage;
 
         function updatePage(page) {
-            var updatePage = PageService.updatePage(vm.pageId,page);
-            if (updatePage != null) {
-                console.log(page);
-            }
-            else {
-                console.log("Page Update Error");
-                vm.error = "Page couldn't be Updated."
-            }
+            var pageUpdatePromise = PageService.updatePage(vm.pageId,page);
+            pageUpdatePromise
+                .success(function(){
+                })
+                .error(function(){
+                    vm.error = "Unable to update Page";
+                });
         }
 
         function deletePage() {
-            PageService.deletePage(vm.pageId);
+            var answer = confirm("Are you sure?");
+            if(answer){
+                var pageDeletePromise = PageService.deletePage(vm.pageId);
+                pageDeletePromise
+                    .success(function(){
+                    })
+                    .error(function(){
+                        vm.error = "Unable to delete Page";
+                    });
+            }
         }
     }
 })();

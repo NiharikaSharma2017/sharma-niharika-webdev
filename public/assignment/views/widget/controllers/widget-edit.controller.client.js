@@ -13,31 +13,58 @@
         vm.deleteWidget = deleteWidget;
 
         function init() {
-            vm.widget = WidgetService.findWidgetById(vm.widgetId);
-            console.log(vm.widget);
-            vm.widgetType = vm.widget.widgetType.toLowerCase();
-            vm.size = vm.widget.size;
-            vm.text = vm.widget.text;
-            vm.url = vm.widget.url;
-            vm.width = vm.widget.width;
-            vm.page = "views/widget/templates/widget-" + vm.widgetType + ".view.client.html";
+            var widgetRetrievePromise = WidgetService.findWidgetById(vm.widgetId);
+            widgetRetrievePromise
+                .success(function(widget){
+                    vm.widget = widget;
+                    vm.widgetType = widget.widgetType.toLowerCase();
+                    vm.size = widget.size;
+                    vm.text = widget.text;
+                    vm.url = widget.url;
+                    vm.width = widget.width;
+                    vm.page = "views/widget/templates/widget-" + vm.widgetType + ".view.client.html";
+                })
+                .error(function(){
+                    console.log("Failed to retrieve Widget");
+                });
         }
 
         init();
 
-        function updateWidget(widget, widgetType) {
-            var updateWidget = WidgetService.updateWidget(vm.widgetId, widget, widgetType);
-            if (updateWidget != null) {
-                console.log(widget);
+        function updateWidget(widget) {
+            var newWidget = {}
+            var type = vm.widgetType;
+            switch(type){
+                case "header":
+                    newWidget = {"_id": vm.widgetId, "pageId" : vm.pageId, "size" : widget.size, "text" : widget.text, "widgetType" : type.toUpperCase()};
+                    break;
+                case "youtube":
+                    newWidget = {"_id": vm.widgetId, "pageId" : vm.pageId, "width" : widget.width, "widgetType" : type.toUpperCase(), "url" : widget.url};
+                    break;
+                case "image":
+                    newWidget = {"_id": vm.widgetId, "pageId" : vm.pageId, "width" : widget.width, "widgetType" : type.toUpperCase(), "url" : widget.url};
+                    break;
             }
-            else {
-                console.log("Widget Update Error");
-                vm.error = "Widget couldn't be Updated."
-            }
+            var widgetUpdatePromise = WidgetService.updateWidget(vm.widgetId, newWidget);
+            widgetUpdatePromise
+                .success(function(){
+                })
+                .error(function(){
+                    vm.error = "Unable to update Widget";
+                });
         }
 
         function deleteWidget() {
-            WidgetService.deleteWidget(vm.widgetId);
+            var answer = confirm("Are you sure?");
+            if(answer){
+                var widgetDeletePromise = WidgetService.deleteWidget(vm.widgetId);
+                widgetDeletePromise
+                    .success(function(){
+                    })
+                    .error(function(){
+                        vm.error = "Unable to delete Widget";
+                    });
+            }
 
         }
     }

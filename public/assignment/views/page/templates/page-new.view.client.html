@@ -2,7 +2,7 @@
     <div class="row container-fluid">
         <div class="col-sm-4 hidden-xs">
             <div class="navbar-text pull-left">
-                <a href="#/user/{{model.userId}}/website/{{model.wid}}/page" class="glyphicon glyphicon-chevron-left">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="glyphicon glyphicon-chevron-left">
                 </a>
             </div>
             <div class="navbar-header">
@@ -11,17 +11,17 @@
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a href="#/user/{{model.userId}}/website/{{model.wid}}/page/new" class="glyphicon glyphicon-plus">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new" class="glyphicon glyphicon-plus">
                 </a>
             </div>
         </div>
         <div class="col-sm-8">
             <div class="navbar-text pull-left hidden-sm hidden-md hidden-lg">
-                <a href="#/user/{{model.userId}}/website/{{model.wid}}/page" class="glyphicon glyphicon-chevron-left">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="glyphicon glyphicon-chevron-left">
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a href="#/user/{{model.userId}}/website/{{model.wid}}/page" ng-click="model.createPage(model.page)" class="glyphicon glyphicon-ok">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" ng-click="model.createPage(model.page)" class="glyphicon glyphicon-ok">
                 </a>
             </div>
             <div class="navbar-header">
@@ -39,8 +39,8 @@
             <li ng-repeat="page in model.pages" class="list-group-item">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12">
-                        <a href="#/user/{{model.userId}}/website/{{website._id}}/page/{{page._id}}/widget" class="body-text-custom">{{page.name}}</a>
-                        <a href="#/user/{{model.userId}}/website/{{model.wid}}/page/{{page._id}}" class="glyphicon glyphicon-cog pull-right body-text-custom"></a>
+                        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.page._id}}/widget" class="body-text-custom">{{model.page.name}}</a>
+                        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.page._id}}" class="glyphicon glyphicon-cog pull-right body-text-custom"></a>
                     </div>
                 </div>
             </li>
@@ -58,7 +58,7 @@
                ng-model="model.page.description"
                class="form-control"
                id="page-description" />
-        <a href="#/user/{{model.userId}}/website/{{model.wid}}/page" class="btn btn-danger btn-block">
+        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="btn btn-danger btn-block">
             Cancel
         </a>
     </div>

@@ -12,7 +12,14 @@
         vm.getTrustedHtml = getTrustedHtml;
 
         function init() {
-            vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
+            var widgetListPromise = WidgetService.findWidgetsByPageId(vm.pageId);
+            widgetListPromise
+                .success(function(widgets){
+                    vm.widgets = widgets;
+                })
+                .error(function(){
+                    console.log("Failed to retrieve Widget List");
+                });
         }
 
         init();
@@ -23,7 +30,8 @@
 
         function getYouTubeEmbedUrl(widgetUrl) {
             var urlParts = widgetUrl.split('/');
-            var id = urlParts[urlParts.length - 1];
+            var raw_id = urlParts[urlParts.length - 1];
+            var id = raw_id.slice(8);
             var url = "https://www.youtube.com/embed/"+id;
             return $sce.trustAsResourceUrl(url);
         }

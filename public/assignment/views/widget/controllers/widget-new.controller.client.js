@@ -8,15 +8,40 @@
         vm.userId = $routeParams.uid;
         vm.websiteId = $routeParams.wid;
         vm.pageId = $routeParams.pid;
-        vm.widgetType = $routeParams.type;
-        vm.page = "views/widget/templates/widget-" + vm.widgetType + ".view.client.html";
+        var widgetType = $routeParams.type;
+        vm.page = "views/widget/templates/widget-" + widgetType + ".view.client.html";
 
 
         vm.createWidget = createWidget;
 
         function createWidget(widget) {
-            WidgetService.createWidget(vm.pageId, widget, vm.widgetType) ;
-            console.log(widget);
+
+            switch(widgetType){
+                case "header":
+                    widget.widgetType = "HEADER";
+                    break;
+                case "youtube":
+                    widget.widgetType = "YOUTUBE";
+                    break;
+                case "html":
+                    widget.widgetType = "HTML";
+                    break;
+                case "image":
+                    widget.widgetType = "IMAGE";
+                    break;
+                case "text":
+                    widget.widgetType = "TEXT";
+                    break;
+            }
+
+            var createPromise = WidgetService.createWidget(vm.pageId, widget) ;
+            createPromise
+                .success(function(widget){
+                    console.log(widget);
+                })
+                .error(function(){
+                    console.log("Internal Server Error - Unable to add Widget");
+                });
         }
     }
 })();

@@ -8,14 +8,21 @@
         vm.login = login;
 
         function login(user) {
-            console.log(user.username, user.password);
-            var loginUser = UserService.findUserByCredentials(user.username, user.password);
-            if (loginUser){
-                $location.url("/profile/" + loginUser._id);
-            }
-            else{
-                vm.error = "Unable to Login. Check your Username or Password.";
-            }
+            var loginPromise = UserService.findUserByCredentials(user.username, user.password);
+            loginPromise
+                .success(function (response) {
+                    var  loginUser = response;
+                    if (loginUser){
+                        $location.url("/profile/" + loginUser._id);
+                    }
+                    else {
+                        vm.error = "Unable to Login. Check your Username or Password.";
+                    }
+            })
+
+                .error(function(err) {
+                    vm.error = "Unable to Login. Check your Username or Password.";
+                });
         }
     }
 })();

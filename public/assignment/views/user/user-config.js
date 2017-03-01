@@ -20,13 +20,11 @@
                 controller : "RegisterController",
                 controllerAs : "model"
             })
-
             .when("/profile/:uid",{
                 templateUrl: '/assignment/views/user/templates/profile.view.client.html',
                 controller: 'ProfileController',
                 controllerAs: 'model'
             })
-
             .otherwise({
                 redirectTo: '/'
             });

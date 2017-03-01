@@ -32,6 +32,18 @@ body {
     margin-left: 0px;
 }
 
+.no-bottom-padding {
+    padding-bottom: 0px;
+}
+
+.no-bottom-margin {
+    margin-bottom: 0px;
+}
+
+button.form-group {
+    margin-top: 20px;
+}
+
 
 .col-sm-8 .glyphicon-chevron-left{
     padding-right: 15px;
