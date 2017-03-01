@@ -11,36 +11,28 @@
         var widgetType = $routeParams.type;
         vm.page = "views/widget/templates/widget-" + widgetType + ".view.client.html";
 
-
-        vm.createWidget = createWidget;
-
-        function createWidget(widget) {
-
+        vm.buildWidget = buildWidget;
+        function buildWidget(widget) {
+            var myWidget = {};
             switch(widgetType){
                 case "header":
-                    widget.widgetType = "HEADER";
+                    myWidget = {"size":widget.size, "text":widget.text,"widgetType": "HEADER"};
                     break;
                 case "youtube":
-                    widget.widgetType = "YOUTUBE";
-                    break;
-                case "html":
-                    widget.widgetType = "HTML";
+                    myWidget = {"width":widget.width, "text":widget.text,"widgetType": "YOUTUBE", "url":widget.url};
                     break;
                 case "image":
-                    widget.widgetType = "IMAGE";
-                    break;
-                case "text":
-                    widget.widgetType = "TEXT";
+                    myWidget = {"width":widget.width, "text":widget.text,"widgetType": "IMAGE", "url":widget.url};
                     break;
             }
 
-            var createPromise = WidgetService.createWidget(vm.pageId, widget) ;
+            var createPromise = WidgetService.createWidget(vm.pageId, myWidget) ;
             createPromise
                 .success(function(widget){
                     console.log(widget);
                 })
                 .error(function(){
-                    console.log("Internal Server Error - Unable to add Widget");
+                    console.log("Internal Server Error - Unable to create Widget");
                 });
         }
     }

@@ -17,7 +17,7 @@
 </form>
 <p align="center">OR</p>
 <div class="form-group">
-    <form action="/api/upload"  method="post" enctype="multipart/form-data">
+    <form id="UploadForm" action="/api/upload"  method="post" enctype="multipart/form-data">
         <input  name="myFile"   type="file" class="form-control"/>
         <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
         <input  name="widgetId" value="{{model.widget._id}}"   style="display: none"/>

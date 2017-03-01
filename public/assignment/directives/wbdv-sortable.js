@@ -1,7 +1,7 @@
 (function(){
     angular
         .module("wbdvDirectives", [])
-        .directive("sortable", sortable);
+        .directive("wbdvSortable", sortable);
 
     function sortable(){
 
@@ -10,10 +10,10 @@
             var end = -1;
             element
                 .sortable({
+                    axis: 'y',
                     start: function(event, ui){
                         start = $(ui.item).index();
                     },
-
                     stop: function(event, ui){
                         end = $(ui.item).index();
                         scope.sortableController.sort(start, end);

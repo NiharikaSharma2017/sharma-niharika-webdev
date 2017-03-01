@@ -11,9 +11,15 @@
             findWidgetById : findWidgetById,
             updateWidget : updateWidget,
             deleteWidget : deleteWidget,
+            // getUploadImageUrl : getUploadImageUrl,
             sort : sort
         };
         return api;
+
+        // function getUploadImageUrl(){
+        //     var url = "/api/upload/";
+        //     return $http.get(url);
+        // }
 
 
         function sort(start, end){

@@ -38,27 +38,27 @@ module.exports = function(app){
         var mimetype = myFile.mimetype;
         var url = "/uploads/" + filename;
         if(widgetId === ""){
-            var id = ((new Date()).getTime() % 1000).toString();
-            var upload = { "_id": id, "widgetType": "IMAGE", "pageId": pid, "width": width,
+            var widgetId = ((new Date()).getTime() % 1000).toString();
+            var upload = { "_id": widgetId, "widgetType": "IMAGE", "pageId": pid, "width": width,
                 "url": url, "text": text, "uploaded": true};
             widgets.push(upload);
             res.status(200);
-            res.redirect("/assignment"+resurl);
+            res.redirect("/assignment"+resurl+"/"+widgetId);
             return;
         }
         else{
             var upload = { "_id": widgetId, "widgetType": "IMAGE", "pageId": pid, "width": width,
                 "url": url, "text": text, "uploaded": true};
             for(var w in widgets) {
-                if(widgets[w]._id === widgetId) {
+                if (widgets[w]._id === widgetId) {
                     widgets[w] = upload;
                 }
             }
             res.status(200);
-            res.redirect("/assignment"+resurl);
+            res.redirect("/assignment"+resurl+"/"+widgetId);
             return;
+            }
         }
-    }
 
 
     function createWidget(req, res){
