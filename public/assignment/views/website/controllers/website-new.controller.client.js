@@ -7,7 +7,17 @@
         var vm = this;
         vm.userId = $routeParams.uid;
         vm.createWebsite = createWebsite;
-
+        function init() {
+            var websiteListPromise = WebsiteService.findWebsitesByUser(vm.userId);
+            websiteListPromise
+                .success(function(websites){
+                    vm.websites = websites;
+                })
+                .error(function(){
+                    console.log("Failed to retrieve Website List");
+                });
+        }
+        init();
         function createWebsite (website) {
             var createPromise = WebsiteService.createWebsite(vm.userId, website);
             createPromise

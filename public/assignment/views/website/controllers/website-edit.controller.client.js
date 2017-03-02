@@ -9,7 +9,14 @@
         vm.websiteId = $routeParams.wid;
 
         function init() {
-
+            var websiteListPromise = WebsiteService.findWebsitesByUser(vm.userId);
+            websiteListPromise
+                .success(function(websites){
+                    vm.websites = websites;
+                })
+                .error(function(){
+                    console.log("Failed to retrieve Website List");
+                });
             var websiteRetrievePromise = WebsiteService.findWebsiteById(vm.websiteId);
             websiteRetrievePromise
                 .success(function(website){

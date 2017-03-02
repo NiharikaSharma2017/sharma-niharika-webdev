@@ -42,7 +42,7 @@
                     newWidget = {"_id": vm.widgetId, "pageId" : vm.pageId, "width" : widget.width, "widgetType" : type.toUpperCase(), "url" : widget.url};
                     break;
                 case "image":
-                    newWidget = {"_id": vm.widgetId, "pageId" : vm.pageId, "width" : widget.width, "widgetType" : type.toUpperCase(), "url" : widget.url};
+                    newWidget = {"_id": vm.widgetId, "pageId" : vm.pageId, "width" : widget.width, "text" : widget.text, "widgetType" : type.toUpperCase(), "url" : widget.url};
                     break;
             }
             var widgetUpdatePromise = WidgetService.updateWidget(vm.widgetId, newWidget);

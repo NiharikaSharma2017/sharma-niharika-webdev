@@ -10,6 +10,14 @@
         vm.pageId = $routeParams.pid;
 
         function init() {
+            var pageListPromise = PageService.findPagesByWebsiteId(vm.websiteId);
+            pageListPromise
+                .success(function(pages){
+                    vm.pages = pages;
+                })
+                .error(function(){
+                    console.log("Failed to retrieve Page List");
+                });
             var pageRetrievePromise = PageService.findPageById(vm.pageId);
             pageRetrievePromise
                 .success(function(page){
