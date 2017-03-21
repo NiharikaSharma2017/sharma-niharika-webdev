@@ -11,55 +11,52 @@
         vm.logout = logout;
 
         function init() {
-            var loginPromise = UserService.findUserById(userId);
-            loginPromise
-                .success(function (response) {
-                    var loginUser = response;
-                    if (loginUser != null) {
-                        vm.user = loginUser;
-                    }
-                    else {
-                        vm.error = "User not found";
-                    }
-                })
-                .error(function(){
-                    vm.error = "User not found";
+            UserService
+                .findUserById(userId)
+                .then(function(response){
+                        vm.user = response.data;
                 });
         }
 
         init();
 
         function updateUser(user){
-            var updatePromise = UserService.updateUser(user);
-            updatePromise
-                .success(function(response){
-                    vm.message = "User successfully updated";
-                })
-                .error(function(){
-                    vm.error = "Unable to update User";
-                });
+            UserService
+                .updateUser(user)
+                .then(
+                    function(response) {
+                        vm.success = "Updated successfully";
+                    },
+                    function(error) {
+                        vm.error = "Unable to update user"
+                    }
+                );
         }
 
         function logout(){
             UserService
                 .logout()
-                .success(function(){
-                    $location.url("/");
-                })
+                .then(
+                    function(response){
+                        $location.url("/login");
+                    }
+                )
         }
 
 
         function deleteUser(user){
             var answer = confirm("Are you sure?");
             if(answer){
-                var deletePromise = UserService.deleteUser(user._id);
-                deletePromise
-                    .success(function(){
-                        $location.url("/login");
-                    })
-                    .error(function(){
-                        vm.error = "Unable to delete User";
-                    });
+                UserService
+                    .deleteUser(user._id)
+                    .then(
+                        function(){
+                            $location.url("/login");
+                        },
+                        function() {
+                            vm.error = "Unable to remove user"
+                        }
+                    );
             }
         }
 

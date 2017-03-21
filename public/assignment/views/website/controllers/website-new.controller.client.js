@@ -8,25 +8,29 @@
         vm.userId = $routeParams.uid;
         vm.createWebsite = createWebsite;
         function init() {
-            var websiteListPromise = WebsiteService.findWebsitesByUser(vm.userId);
-            websiteListPromise
-                .success(function(websites){
-                    vm.websites = websites;
-                })
-                .error(function(){
-                    console.log("Failed to retrieve Website List");
+            WebsiteService
+                .findWebsitesByUser(vm.userId)
+                .then(function(response){
+                    vm.websites = response.data;
                 });
         }
         init();
+
         function createWebsite (website) {
-            var createPromise = WebsiteService.createWebsite(vm.userId, website);
-            createPromise
-                .success(function(website){
-                    console.log(website);
-                })
-                .error(function(){
-                    console.log("Internal Server Error - Unable to add Website");
+            var newWebsite = {name: website.name, description: website.description};
+            WebsiteService
+                .createWebsite(vm.userId, newWebsite)
+                .then(function(response){
+                    var website = response.data;
+                    if(website){
+                        $location.url("/user/"+vm.userId+"/website");
+                    }
+                    else {
+                        vm.error = "Sorry, unable to create website";
+                    }
+
                 });
         }
+
     }
 })();

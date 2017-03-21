@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .controller("EditWidgetController", EditWidgetController);
 
-    function EditWidgetController($routeParams, WidgetService) {
+    function EditWidgetController($routeParams, $location, WidgetService) {
         var vm = this;
         vm.userId = $routeParams.uid;
         vm.websiteId = $routeParams.wid;
@@ -13,19 +13,18 @@
         vm.deleteWidget = deleteWidget;
 
         function init() {
-            var widgetRetrievePromise = WidgetService.findWidgetById(vm.widgetId);
-            widgetRetrievePromise
-                .success(function(widget){
-                    vm.widget = widget;
-                    vm.widgetType = widget.widgetType.toLowerCase();
-                    vm.size = widget.size;
-                    vm.text = widget.text;
-                    vm.url = widget.url;
-                    vm.width = widget.width;
-                    vm.page = "views/widget/templates/widget-" + vm.widgetType + ".view.client.html";
-                })
-                .error(function(){
-                    console.log("Failed to retrieve Widget");
+            WidgetService
+                .findWidgetById(vm.widgetId)
+                .then(function(response){
+                    if(response){
+                        vm.widget = response.data;
+                        vm.widgetType = vm.widget.widgetType.toLowerCase();
+                        vm.size = vm.widget.size;
+                        vm.text = vm.widget.text;
+                        vm.url = vm.widget.url;
+                        vm.width = vm.widget.width;
+                        vm.page = "views/widget/templates/widget-" + vm.widgetType + ".view.client.html";
+                    }
                 });
         }
 
@@ -45,24 +44,30 @@
                     newWidget = {"_id": vm.widgetId, "pageId" : vm.pageId, "width" : widget.width, "text" : widget.text, "widgetType" : type.toUpperCase(), "url" : widget.url};
                     break;
             }
-            var widgetUpdatePromise = WidgetService.updateWidget(vm.widgetId, newWidget);
-            widgetUpdatePromise
-                .success(function(){
-                })
-                .error(function(){
-                    vm.error = "Unable to update Widget";
+            WidgetService
+                .updateWidget(vm.widgetId, newWidget)
+                .then(function(response){
+                    if(response){
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
+                    }
+                    else{
+                        vm.error = "Unable to update widget";
+                    }
                 });
         }
 
         function deleteWidget() {
             var answer = confirm("Are you sure?");
             if(answer){
-                var widgetDeletePromise = WidgetService.deleteWidget(vm.widgetId);
-                widgetDeletePromise
-                    .success(function(){
-                    })
-                    .error(function(){
-                        vm.error = "Unable to delete Widget";
+                WidgetService
+                    .deleteWidget(vm.widgetId)
+                    .then(function(response){
+                        if(response){
+                            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
+                        }
+                        else{
+                            vm.error = "Unable to delete widget";
+                        }
                     });
             }
 

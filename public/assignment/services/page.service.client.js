@@ -16,7 +16,7 @@
 
         function createPage(websiteId, page){
             var url = "/api/website/" + websiteId + "/page";
-            return $http.post(url,page);
+            return $http.post(url, page);
         }
 
         function findPagesByWebsiteId(websiteId){

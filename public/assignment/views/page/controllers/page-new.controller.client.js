@@ -10,27 +10,25 @@
         vm.createPage = createPage;
 
         function init() {
-            var pageListPromise = PageService.findPagesByWebsiteId(vm.websiteId);
-            pageListPromise
-                .success(function(pages){
-                    vm.pages = pages;
-                })
-                .error(function(){
-                    console.log("Failed to retrieve Page List");
+            PageService
+                .findPagesByWebsiteId(vm.websiteId)
+                .then(function(response){
+                    vm.pages = response.data;
                 });
         }
         init();
         function createPage (page) {
-            var createPromise = PageService.createPage(vm.websiteId,page);
-            createPromise
-                .success(function(page){
-                    console.log(page);
-                })
-                .error(function(){
-                    console.log("Internal Server Error - Unable to add Page");
-                });
-
+            var newPage = {name: page.name, description: page.description};
+            PageService.createPage(vm.websiteId, newPage)
+            .then(function(response){
+                    var page = response.data;
+                    if(page){
+                        // $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                    }
+                    else {
+                        vm.error = "Sorry, unable to create page";
+                    }
+            });
         }
     }
 })();
-

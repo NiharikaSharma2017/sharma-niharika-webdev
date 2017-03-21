@@ -12,13 +12,10 @@
         vm.getTrustedHtml = getTrustedHtml;
 
         function init() {
-            var widgetListPromise = WidgetService.findWidgetsByPageId(vm.pageId);
-            widgetListPromise
-                .success(function(widgets){
-                    vm.widgets = widgets;
-                })
-                .error(function(){
-                    console.log("Failed to retrieve Widget List");
+            WidgetService
+                .findWidgetsByPageId(vm.pageId)
+                .then(function(response){
+                    vm.widgets = response.data;
                 });
         }
 

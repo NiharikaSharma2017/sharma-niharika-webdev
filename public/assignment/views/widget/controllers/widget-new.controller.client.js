@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .controller("NewWidgetController", NewWidgetController);
 
-    function NewWidgetController($routeParams, WidgetService) {
+    function NewWidgetController($routeParams, $location, WidgetService) {
         var vm = this;
         vm.userId = $routeParams.uid;
         vm.websiteId = $routeParams.wid;
@@ -26,13 +26,15 @@
                     break;
             }
 
-            var createPromise = WidgetService.createWidget(vm.pageId, myWidget) ;
-            createPromise
-                .success(function(widget){
-                    console.log(widget);
-                })
-                .error(function(){
-                    console.log("Internal Server Error - Unable to create Widget");
+            WidgetService
+                .createWidget(vm.pageId, myWidget)
+                .then(function(response){
+                    if(response){
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
+                    }
+                    else{
+                        vm.error = "Unable to create widget";
+                    }
                 });
         }
     }

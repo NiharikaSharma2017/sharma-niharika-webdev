@@ -3,30 +3,26 @@
         .module("WebAppMaker")
         .controller("EditPageController", EditPageController)
 
-    function EditPageController($routeParams, PageService){
+    function EditPageController($routeParams, $location, PageService){
         var vm = this;
         vm.userId = $routeParams.uid;
         vm.websiteId = $routeParams.wid;
         vm.pageId = $routeParams.pid;
 
         function init() {
-            var pageListPromise = PageService.findPagesByWebsiteId(vm.websiteId);
-            pageListPromise
-                .success(function(pages){
-                    vm.pages = pages;
-                })
-                .error(function(){
-                    console.log("Failed to retrieve Page List");
+            PageService
+                .findPagesByWebsiteId(vm.websiteId)
+                .then(function(response){
+                    vm.pages = response.data;
                 });
-            var pageRetrievePromise = PageService.findPageById(vm.pageId);
-            pageRetrievePromise
-                .success(function(page){
-                    vm.page = page;
-                    vm.name = vm.page.name;
-                    vm.description = vm.page.description;
-                })
-                .error(function(){
-                    console.log("Failed to retrieve Page");
+
+            PageService.findPageById(vm.pageId)
+                .then(function(response){
+                    if(response){
+                        vm.page = response.data;
+                        vm.name = vm.page.name;
+                        vm.description = vm.page.description;
+                    }
                 });
         }
 
@@ -36,25 +32,31 @@
         vm.deletePage = deletePage;
 
         function updatePage(page) {
-            var pageUpdatePromise = PageService.updatePage(vm.pageId,page);
-            pageUpdatePromise
-                .success(function(){
-                })
-                .error(function(){
-                    vm.error = "Unable to update Page";
+            PageService
+                .updatePage(vm.pageId, page)
+                .then(function(response){
+                    if(response){
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                    }
+                    else{
+                        vm.error = "Unable to update page";
+                    }
                 });
         }
 
         function deletePage() {
             var answer = confirm("Are you sure?");
             if(answer){
-                var pageDeletePromise = PageService.deletePage(vm.pageId);
-                pageDeletePromise
-                    .success(function(){
-                    })
-                    .error(function(){
-                        vm.error = "Unable to delete Page";
-                    });
+                PageService
+                    .deletePage(vm.pageId)
+                    .then(function(response){
+                            if(response){
+                                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                            }
+                            else{
+                                vm.error = "Unable to delete page";
+                            }
+                        });
             }
         }
     }

@@ -9,13 +9,10 @@
         vm.websiteId = $routeParams.wid;
 
         function init() {
-            var pageListPromise = PageService.findPagesByWebsiteId(vm.websiteId);
-            pageListPromise
-                .success(function(pages){
-                    vm.pages = pages;
-                })
-                .error(function(){
-                    console.log("Failed to retrieve Page List");
+            PageService
+                .findPagesByWebsiteId(vm.websiteId)
+                .then(function(response){
+                    vm.pages = response.data;
                 });
         }
         init();
