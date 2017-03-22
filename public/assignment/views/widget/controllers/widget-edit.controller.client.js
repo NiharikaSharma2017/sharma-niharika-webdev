@@ -20,8 +20,8 @@
                         console.log(response.data);
                         vm.widget = response.data;
                         vm.widgetType = vm.widget.widgetType.toLowerCase();
-                        vm.size = vm.widget.size;
                         vm.text = vm.widget.text;
+                        vm.size = vm.widget.size;
                         vm.url = vm.widget.url;
                         vm.width = vm.widget.width;
                         vm.page = "views/widget/templates/widget-" + vm.widgetType + ".view.client.html";
