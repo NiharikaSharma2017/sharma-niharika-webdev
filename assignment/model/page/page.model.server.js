@@ -1,45 +1,113 @@
-module.exports = function() {
-    var mongoose = require('mongoose');
-    var PageSchema = require("./page.schema.server")();
-    var PageModel = mongoose.model("PageModel", PageSchema);
+var q = require('q');
+var mongoose = require('mongoose');
+var PageSchema = require("./page.schema.server")();
+var PageModel = mongoose.model("PageModel", PageSchema);
+var websiteModel = require("../website/website.model.server");
 
-    var api = {
-        createPage : createPage,
-        findAllPagesForWebsite : findAllPagesForWebsite,
-        findPageById : findPageById,
-        updatePage : updatePage,
-        deletePage : deletePage
-    };
 
-    return api;
+PageModel.createPage = createPage;
+PageModel.findAllPagesForWebsite = findAllPagesForWebsite;
+PageModel.findAllWidgetsForPage = findAllWidgetsForPage;
+PageModel.findPageById = findPageById;
+PageModel.updatePage = updatePage;
+PageModel.deletePage = deletePage;
 
-    function deletePage(pid){
-        return PageModel
-            .remove({_id:pid});
-    }
+module.exports = PageModel;
 
-    function updatePage(pid, page){
-        return PageModel
-            .update({_id : pid},
-                {
-                    $set: {
-                        name : page.name,
-                        description: page.description
-                    }
-                });
-    }
+function deletePage(pid){
+    var d = q.defer();
+    PageModel
+        .remove({_id: pid}, function (err, page) {
+            if(err) {
+                d.abort(err);
+            } else {
+                d.resolve(page);
+            }
+        });
 
-    function findPageById (pid){
-        return PageModel.findById(pid);
-    }
+    return d.promise;
+}
 
-    function findAllPagesForWebsite(wid){
-        return PageModel.find({"_website": wid});
-    }
+function updatePage(pid, page){
+    var d = q.defer();
+    PageModel
+        .update({_id : pid},
+            {
+                $set: {
+                    name : page.name,
+                    description: page.description
+                }
+            }, function (err, page) {
+                if(err) {
+                    d.abort(err);
+                } else {
+                    d.resolve(page);
+                }
+            });
 
-    function createPage(websiteId, page){
-        page._website = websiteId;
-        return PageModel.create(page);
-    }
+    return d.promise;
+}
 
-};
+function findPageById (pid){
+    var d = q.defer();
+    PageModel
+        .findById(pid, function (err, page) {
+            if(err) {
+                d.abort(err);
+            } else {
+                d.resolve(page);
+            }
+        });
+
+    return d.promise;
+}
+
+function findAllPagesForWebsite(wid){
+    var d = q.defer();
+    PageModel
+        .find({"_website": wid}, function (err, pages) {
+            if(err) {
+                d.abort(err);
+            } else {
+                d.resolve(pages);
+            }
+        });
+
+    return d.promise;
+}
+
+function findAllWidgetsForPage(pid) {
+    var d = q.defer();
+    PageModel
+        .findById(pid)
+        .populate("widgets")
+        .exec(function (err, page) {
+            if(err){
+                d.abort()
+            }
+            else{
+                d.resolve(page.widgets);
+            }
+        });
+    return d.promise;
+}
+
+function createPage(websiteId, page){
+    var d = q.defer();
+    page._website = websiteId;
+    PageModel
+        .create(page, function (err, page) {
+            if(err) {
+                d.abort(err);
+            } else {
+                websiteModel.findWebsiteById(websiteId)
+                    .then(function (website) {
+                        website.pages.push(page);
+                        website.save(function (err, data) {
+                            d.resolve(data);
+                        });
+                    });
+            }
+        });
+    return d.promise;
+}

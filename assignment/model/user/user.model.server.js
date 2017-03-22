@@ -1,52 +1,109 @@
-module.exports = function(app) {
-    // console.log("Hello from User Model!!!");
-    var mongoose = require('mongoose');
-    var UserSchema = require('./user.schema.server')();
-    var UserModel = mongoose.model("UserModel", UserSchema);
+var q = require('q');
+var mongoose = require('mongoose');
+var UserSchema = require('./user.schema.server')();
+var UserModel = mongoose.model("UserModel", UserSchema);
 
-    var api = {
-        createUser: createUser,
-        findUserById: findUserById,
-        findUserByUsername: findUserByUsername,
-        findUserByCredentials: findUserByCredentials,
-        updateUser: updateUser,
-        deleteUser: deleteUser
-    };
-    return api;
+UserModel.createUser = createUser;
+UserModel.findUserById = findUserById;
+UserModel.findUserByUsername = findUserByUsername;
+UserModel.findUserByCredentials = findUserByCredentials;
+UserModel.updateUser = updateUser;
+UserModel.deleteUser = deleteUser;
 
-    function findUserById(id) {
-        return UserModel.findById(id);
-    }
+module.exports = UserModel;
 
-    function findUserByCredentials(username, password) {
-        return UserModel.findOne({
+function findUserById(uid) {
+    var d = q.defer();
+    UserModel
+        .findById(uid, function (err, user) {
+            if(err) {
+                d.abort(err);
+            } else {
+                d.resolve(user);
+            }
+        });
+
+    return d.promise;
+}
+
+function findUserByCredentials(username, password) {
+    var d = q.defer();
+    UserModel
+        .findOne({
             username: username,
             password: password
+        }, function (err, user) {
+            if(err) {
+                d.abort(err);
+            } else {
+                d.resolve(user);
+            }
         });
-    }
 
-    function findUserByUsername(username) {
-        return UserModel.findOne({username: username});
-    }
+    return d.promise;
+}
 
-    function createUser(user) {
-        return UserModel.create(user);
-    }
+function findUserByUsername(username) {
+    var d = q.defer();
+    UserModel
+        .findOne({
+            username: username
+        }, function (err, user) {
+            if(err) {
+                d.abort(err);
+            } else {
+                d.resolve(user);
+            }
+        });
 
-    function updateUser(id, user) {
-        return UserModel.update(
-            {_id: id},
+    return d.promise;
+}
+
+function createUser(user) {
+    var d = q.defer();
+    UserModel
+        .create(user, function (err, user) {
+            if(err) {
+                d.abort(err);
+            } else {
+                d.resolve(user);
+            }
+        });
+
+    return d.promise;
+}
+
+function updateUser(id, user) {
+    var d = q.defer();
+    UserModel
+        .update({_id: id},
             {
                 $set: {
                     firstName: user.firstName,
                     lastName: user.lastName,
                     email: user.email
                 }
+            }, function (err, user) {
+            if(err) {
+                d.abort(err);
+            } else {
+                d.resolve(user);
             }
-        );
-    }
+        });
 
-    function deleteUser(userId) {
-        return UserModel.remove({_id: userId});
-    }
-};
+    return d.promise;
+}
+
+function deleteUser(userId) {
+    var d = q.defer();
+    UserModel
+        .remove({_id: userId}, function (err, user) {
+            if(err) {
+                d.abort(err);
+            } else {
+                d.resolve(user);
+            }
+        });
+
+    return d.promise;
+}

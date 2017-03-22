@@ -133,6 +133,7 @@ textarea{
 
 .jga-toolbar{
     position: absolute;
+    z-index: 200;
     right: 7px;
     background-color: white;
     padding-left: 5px;
@@ -223,6 +224,7 @@ iframe{
 }
 .youtube-widget iframe {
     position: absolute;
+    z-index: 100;
     top: 0;
     left: 0;
     width: 100%;

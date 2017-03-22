@@ -1,10 +1,9 @@
 (function(){
     angular
-        .module("wbdvDirectives", [])
-        .directive("wbdvSortable", sortable);
+        .module("wamDirectives", [])
+        .directive("wamSortable", sortable);
 
     function sortable(){
-
         function linker(scope, element, attributes){
             var start = -1;
             var end = -1;

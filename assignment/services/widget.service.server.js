@@ -13,16 +13,6 @@ module.exports = function(app, models){
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
     app.put('/page/:pageId/widget', sort);
 
-    var widgets = [
-        { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO"},
-        { "_id": "234", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-        { "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
-            "url": "https://3.bp.blogspot.com/-EGKf--ovXS4/UkgfFLd8D1I/AAAAAAAAZKE/i_XX8xQASgs/s1600/earth-in-space-hd-wallpaper.jpg"},
-        { "_id": "567", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-        { "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
-            "url": "https://www.youtube.com/watch?v=c8aFcHFu8QM" },
-    ];
-
 
     function uploadImage(req, res) {
         var text = req.body.text;
@@ -130,11 +120,15 @@ module.exports = function(app, models){
     }
 
     function sort(req, res){
+        var pid = req.params['pageId'];
         var query = req.query;
-        var initial = query.initial;
-        var final = query.final;
-        widgets.splice(final, 0, widgets.splice(initial,1)[0]);
-        // console.log(widgets);
-        res.sendStatus(200);
+        var initial = query.start;
+        var final = query.end;
+        widgetModel
+            .reorderWidget(pid, initial, final)
+            .then(
+                function (widgets) {
+                    res.json(widgets);
+                });
     }
 };

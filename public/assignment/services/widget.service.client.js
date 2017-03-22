@@ -11,20 +11,14 @@
             findWidgetById : findWidgetById,
             updateWidget : updateWidget,
             deleteWidget : deleteWidget,
-            // getUploadImageUrl : getUploadImageUrl,
             sort : sort
         };
         return api;
 
-        // function getUploadImageUrl(){
-        //     var url = "/api/upload/";
-        //     return $http.get(url);
-        // }
-
 
         function sort(start, end){
             var pageId = $routeParams.pid;
-            var url = "/page/"+pageId+"/widget?initial=" + start + "&final=" + end;
+            var url = "/page/"+pageId+"/widget?start=" + start + "&end=" + end;
             $http.put(url);
         }
 

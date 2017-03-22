@@ -26,7 +26,7 @@
         </div>
     </div>
 </nav>
-<div wbdv-sortable="">
+<div wam-sortable="">
     <div ng-repeat="widget in model.widgets">
         <div class="container-fluid">
             <ul class="list-group">
@@ -49,7 +49,7 @@
                                     <img ng-src="{{widget.url}}" />
                                 </div>
                                 <div ng-switch-when="YOUTUBE" class="youtube-widget">
-                                    <iframe width="100%" frameborder="0" ng-src="{{model.getYouTubeEmbedUrl(widget.url)}}"/>
+                                    <iframe ng-src="{{model.getYouTubeEmbedUrl(widget.url)}}"/>
                                 </div>
                                 <div ng-switch-when="HTML" ng-bind-html="model.getTrustedHtml(widget.text)">
                                 </div>
