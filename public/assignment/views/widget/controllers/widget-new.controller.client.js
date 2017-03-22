@@ -28,7 +28,7 @@
                     myWidget = {"size":widget.size, "text":widget.text,"widgetType": "HTML"};
                     break;
                 case "text":
-                    myWidget = {"width":widget.width, "text":widget.text,"widgetType": "TEXT", "url":widget.url, "rows" : widget.rows, "placeholder" : widget.placeholder, "formatted" : widget.formatted};
+                    myWidget = {"width":widget.width, "text":widget.text,"widgetType": "TEXT", "rows" : widget.rows, "placeholder" : widget.placeholder, "formatted" : widget.formatted};
                     break;
             }
 
