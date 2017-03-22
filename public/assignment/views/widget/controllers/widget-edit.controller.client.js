@@ -17,6 +17,7 @@
                 .findWidgetById(vm.widgetId)
                 .then(function(response){
                     if(response){
+                        console.log(response.data);
                         vm.widget = response.data;
                         vm.widgetType = vm.widget.widgetType.toLowerCase();
                         vm.size = vm.widget.size;
@@ -42,6 +43,12 @@
                     break;
                 case "image":
                     newWidget = {"_id": vm.widgetId, "pageId" : vm.pageId, "width" : widget.width, "text" : widget.text, "widgetType" : type.toUpperCase(), "url" : widget.url};
+                    break;
+                case "html":
+                    newWidget = {"_id": vm.widgetId, "pageId" : vm.pageId, "size" : widget.size, "text" : widget.text, "widgetType" : type.toUpperCase()};
+                    break;
+                case "text":
+                    newWidget = {"_id": vm.widgetId, "pageId" : vm.pageId, "width" : widget.width, "text" : widget.text, "widgetType" : type.toUpperCase(), "url" : widget.url, "rows" : widget.rows, "placeholder" : widget.placeholder, "formatted" : widget.formatted};
                     break;
             }
             WidgetService

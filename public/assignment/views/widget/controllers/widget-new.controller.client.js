@@ -24,6 +24,12 @@
                 case "image":
                     myWidget = {"width":widget.width, "text":widget.text,"widgetType": "IMAGE", "url":widget.url};
                     break;
+                case "html":
+                    myWidget = {"size":widget.size, "text":widget.text,"widgetType": "HTML"};
+                    break;
+                case "text":
+                    myWidget = {"width":widget.width, "text":widget.text,"widgetType": "TEXT", "url":widget.url, "rows" : widget.rows, "placeholder" : widget.placeholder, "formatted" : widget.formatted};
+                    break;
             }
 
             WidgetService
