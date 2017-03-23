@@ -4,7 +4,9 @@ module.exports = function(app)
     app.post("/api/test", createMessage);
     app.delete("/api/test/:id", deleteMessage);
 
-    var connectionString = 'mongodb://niharika:niharika101091@ds111529.mlab.com:11529/webdev';
+    var connectionString = 'mongodb://127.0.0.1:27017/test';
+    //'mongodb://heroku_7n4hpm7b:h5j0h19lnhjul8vh7jlh4rf2e@ds111549.mlab.com:11549/heroku_7n4hpm7b'
+
     if(process.env.MONGODB_URI) {
         connectionString = process.env.MONGODB_URI;
     }
