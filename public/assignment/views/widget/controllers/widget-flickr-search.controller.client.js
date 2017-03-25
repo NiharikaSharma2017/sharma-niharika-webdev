@@ -26,12 +26,23 @@
         function selectPhoto(photo) {
             var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server;
             url += "/" + photo.id + "_" + photo.secret + "_b.jpg";
-            var flickrwidget = {"url": url};
-            WidgetService
-                .updateWidget(vm.widgetId, flickrwidget)
-                .then(function(response){
-                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
+            if(vm.widgetId){
+                var flickrwidget = {"url": url};
+                WidgetService
+                    .updateWidget(vm.widgetId, flickrwidget)
+                    .then(function(response){
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
                     });
+            }
+            else{
+                var flickrwidget = {"widgetType": "IMAGE", "_page": vm.pageId, "url": url};
+                WidgetService
+                    .createWidget(vm.pageId, flickrwidget)
+                    .then(function (response) {
+                        var wgt = response.data;
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+wgt._id);
+                    });
+            }
         }
     }
 
