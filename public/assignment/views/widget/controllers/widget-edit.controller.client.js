@@ -17,7 +17,6 @@
                 .findWidgetById(vm.widgetId)
                 .then(function(response){
                     if(response){
-                        console.log(response.data);
                         vm.widget = response.data;
                         vm.widgetType = vm.widget.widgetType.toLowerCase();
                         vm.text = vm.widget.text;
