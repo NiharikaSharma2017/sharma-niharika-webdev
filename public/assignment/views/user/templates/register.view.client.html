@@ -1,18 +1,33 @@
 <div class="container">
         <h1>Register</h1>
-        <input type="text"
-               ng-model="model.user.username"
-               class="form-control"
-               placeholder="username"/>
-        <input type="password"
-               ng-model="model.user.password"
-               class="form-control"
-               placeholder="password"/>
-        <input type="password"
-               class="form-control"
-               placeholder="verify password"/>
-        <a class="btn btn-primary btn-block"
-           ng-click="model.register(model.user)">Register</a>
-        <a class="btn btn-danger  btn-block"
-           href="#/login">Cancel</a>
+        <form name="form1" novalidate>
+                <input type="text"
+                       name="username"
+                       ng-model="model.user.username"
+                       required
+                       class="form-control"
+                       placeholder="username"
+                       ng-required="true"/>
+                <span ng-if="form1.$submitted && form1.username.$error.required">Username is required</span>
+                <input type="password"
+                       name="password1"
+                       ng-model="model.user.password1"
+                       required
+                       class="form-control"
+                       placeholder="password"/>
+                <span ng-if="form1.$submitted && form1.password1.$error.required">Password is required</span>
+                <input type="password"
+                       name="password2"
+                       ng-model="model.user.password2"
+                       required
+                       class="form-control"
+                       placeholder="verify password"/>
+                <span ng-if="form1.$submitted && form1.password2.$error.required">Password Verification is required</span>
+                <button class="btn btn-primary btn-block"
+                   ng-click="model.register(model.user)">
+                        Register
+                </button>
+                <a class="btn btn-danger  btn-block"
+                   href="#/login">Cancel</a>
+        </form>
  </div>

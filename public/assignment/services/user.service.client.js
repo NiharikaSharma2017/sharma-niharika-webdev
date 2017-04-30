@@ -7,8 +7,11 @@
 
         var api = {
             "createUser": createUser,
+            "register": register,
             "updateUser": updateUser,
+            "login": login,
             "logout": logout,
+            "loggedin": loggedin,
             "deleteUser": deleteUser,
             "findUserByCredentials": findUserByCredentials,
             "findUserByUsername": findUserByUsername,
@@ -19,6 +22,14 @@
         function createUser(user){
             var url = '/api/user';
             return $http.post(url, user);
+        }
+
+        function register(user) {
+            return $http.post("/api/register", user);
+        }
+
+        function loggedin(){
+            return $http.get("/api/loggedin");
         }
 
         function updateUser(newUser) {
@@ -44,6 +55,10 @@
         function findUserByCredentials(username, password) {
             var url = '/api/user?username='+username+'&password='+password;
             return $http.get(url);
+        }
+
+        function login(user) {
+            return $http.post("/api/login", user);
         }
 
         function logout(){
