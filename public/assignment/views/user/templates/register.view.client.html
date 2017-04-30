@@ -1,4 +1,7 @@
 <div class="container">
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+                {{model.error}}
+        </div>
         <h1>Register</h1>
         <form name="form1" novalidate>
                 <input type="text"

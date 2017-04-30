@@ -17,9 +17,6 @@
                             $rootScope.currentUser = user;
                             $location.url("/user/" + user._id);
                         }
-                        else{
-                            vm.error = "Username or Password incorrect";
-                        }
                     });
         }
     }

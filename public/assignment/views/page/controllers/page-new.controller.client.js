@@ -22,8 +22,8 @@
             PageService.createPage(vm.websiteId, newPage)
             .then(function(response){
                     var page = response.data;
-                    if(page){
-                        // $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                    if(page.name){
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page")
                     }
                     else {
                         vm.error = "Sorry, unable to create page";
