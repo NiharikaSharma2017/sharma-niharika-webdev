@@ -4,7 +4,7 @@ var session      = require('express-session');
 var app = express();
 var bodyParser = require('body-parser');
 
-app.use(bodyParser.json({type : 'application/json'}));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({

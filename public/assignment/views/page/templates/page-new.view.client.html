@@ -55,7 +55,7 @@
                        required
                        class="form-control"
                        id="page-name"/>
-                <span ng-if="form1.$submitted && form1.pagename.$error.required">Page name is required</span>
+                <span ng-if="form1.pagename.$error.required">Page name is required</span>
                 <label for="page-description">Page Description</label>
                 <input placeholder="description"
                        ng-model="model.page.description"

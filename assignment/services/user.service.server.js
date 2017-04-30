@@ -146,6 +146,7 @@ module.exports = function (app, models) {
 
     function login(req, res) {
         var user = req.user;
+        console.log(user);
         res.json(user);
     }
 
